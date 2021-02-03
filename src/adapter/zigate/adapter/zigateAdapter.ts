@@ -477,13 +477,12 @@ class ZiGateAdapter extends Adapter {
     public async removeDevice(networkAddress: number, ieeeAddr: string): Promise<void> {
         return this.queue.execute<void>(async () => {
             const payload = {
-                shortAddress: networkAddress,
                 extendedAddress: ieeeAddr,
                 rejoin: 0,
                 removeChildren: 0
             };
 
-            return this.driver.sendCommand(ZiGateCommandCode.ManagementLeaveRequest, payload)
+            return this.driver.sendCommand(ZiGateCommandCode.LeaveRequest, payload)
                 .then((Response) => {
                     return Promise.resolve()
                 }).catch(() => Promise.reject());

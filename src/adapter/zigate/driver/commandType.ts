@@ -235,6 +235,26 @@ export const ZiGateCommand: { [key: string]: ZiGateCommandType } = {
             ],
         ]
     },
+    [ZiGateCommandCode.LeaveRequest]: {
+        request: [
+            {name: 'extendedAddress', parameterType: 'IEEEADDR'}, // <extended address: uint64_t>
+            {name: 'rejoin', parameterType: 'UINT8'},
+            {name: 'removeChildren', parameterType: 'UINT8'}, // <Remove Children: uint8_t>
+        ],
+        response: [
+            [
+                {
+                    receivedProperty: 'code',
+                    matcher: equal,
+                    value: ZiGateMessageCode.LeaveIndication
+                },
+                {
+                    receivedProperty: 'payload.extendedAddress', matcher: equal,
+                    expectedProperty: 'payload.extendedAddress'
+                },
+            ],
+        ]
+    },
     [ZiGateCommandCode.PermitJoin]: {
         request: [
             {name: 'targetShortAddress', parameterType: 'UINT16BE'}, //<target short address: uint16_t> -

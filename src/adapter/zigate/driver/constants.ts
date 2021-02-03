@@ -229,6 +229,7 @@ export enum ZiGateCommandCode {
     LED = 0x0018,
     SetTXpower = 0x0806,
     ManagementLeaveRequest = 0x0047,
+    LeaveRequest = 0x004C,
     ManagementLQI = 0x004E,
     SetSecurityStateKey = 0x0022,
 }
